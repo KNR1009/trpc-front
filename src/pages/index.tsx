@@ -1,11 +1,5 @@
-import { trpc } from "../utils/trpc";
+import Link from "next/link";
 
 export default function IndexPage() {
-  const { data } = trpc.todo.getTodos.useQuery();
-  if (!data) {
-    return;
-  }
-  console.log(data);
-
-  return <div>aaa</div>;
+  return <Link href="/todo">TODOページへ</Link>;
 }
