@@ -1,8 +1,5 @@
 import { z } from "zod";
-import { procedure, router } from "../trpc";
-
-/* hello worldを返すAPI routerの作成 */
-/* trpcのルータはserver/routers/配下に作成していく */
+import { procedure, router } from "../../trpc";
 export const appRouter = router({
   hello: procedure
     .input(
