@@ -1,13 +1,11 @@
 import { trpc } from "../utils/trpc";
 
 export default function IndexPage() {
-  const hello = trpc.hello.useQuery({ text: "client" });
-  if (!hello.data) {
-    return <div>Loading...</div>;
+  const { data } = trpc.todo.getTodos.useQuery();
+  if (!data) {
+    return;
   }
-  return (
-    <div>
-      <p>{hello.data.greeting}</p>
-    </div>
-  );
+  console.log(data);
+
+  return <div>aaa</div>;
 }
