@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 
 import { procedure, router } from "../../trpc";

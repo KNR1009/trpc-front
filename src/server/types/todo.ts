@@ -5,7 +5,7 @@ export const createInput = z.object({
   title: z
     .string()
     .min(1, "todo must be at least 1 letter")
-    .max(50, "todo must be 50 letters or less"),
+    .max(10, "todo must be 50 letters or less"),
   body: z
     .string()
     .min(1, "todo must be at least 1 letter")
