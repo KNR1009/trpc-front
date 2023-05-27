@@ -5,6 +5,7 @@ import { ChangeEvent, useState } from "react";
 export default function Page() {
   const { data } = trpc.todo.getTodos.useQuery();
   const createTodoMutation = trpc.todo.createTodo.useMutation();
+  const deleteTodoMutation = trpc.todo.deleteTodo.useMutation();
 
   const [title, setTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
@@ -25,13 +26,31 @@ export default function Page() {
     }
   };
 
+  const handleDeleteTodo = async (id: number) => {
+    try {
+      await deleteTodoMutation.mutateAsync({ id });
+      alert("削除しました");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <ul>
         {data.map((todo) => (
-          <Link key={todo.id} href={`todo/${todo.id}`}>
-            <li>{todo.title}</li>
-          </Link>
+          <div key={todo.id}>
+            <Link href={`todo/${todo.id}`}>
+              <li>{todo.title}</li>
+            </Link>
+            <button
+              onClick={() => {
+                handleDeleteTodo(todo.id);
+              }}
+            >
+              削除
+            </button>
+          </div>
         ))}
       </ul>
       <div className="create-form">

@@ -12,9 +12,11 @@ export default function Page() {
   }
 
   return (
-    <div>
-      <p>タイトル: {data.title}</p>
-      <p>本文: {data.body}</p>
-    </div>
+    <>
+      <div>
+        <p>タイトル: {data.title}</p>
+        <p>本文: {data.body}</p>
+      </div>
+    </>
   );
 }

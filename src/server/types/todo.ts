@@ -14,7 +14,7 @@ export const createInput = z.object({
 
 // 更新用
 export const updateInput = z.object({
-  id: z.string(),
+  id: z.number(),
   title: z
     .string()
     .min(1, "todo must be at least 1 letter")

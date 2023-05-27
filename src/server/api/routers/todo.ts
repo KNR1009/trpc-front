@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 
 import { procedure, router } from "../../trpc";
-import { createInput } from "../../types/todo";
+import { createInput, updateInput } from "../../types/todo";
 const prisma = new PrismaClient();
 
 export const todoRouter = router({
@@ -35,4 +35,23 @@ export const todoRouter = router({
     });
     return todo;
   }),
+  updateTodo: procedure.input(updateInput).mutation(async ({ input }) => {
+    const { id, title, body } = input;
+    const todo = await prisma.todo.update({
+      where: { id },
+      data: { title, body },
+    });
+    return todo;
+  }),
+  deleteTodo: procedure
+    .input(
+      z.object({
+        id: z.number(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      await prisma.todo.delete({
+        where: { id: input.id },
+      });
+    }),
 });
